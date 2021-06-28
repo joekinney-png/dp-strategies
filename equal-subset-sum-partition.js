@@ -72,3 +72,44 @@ const find_partition_memo = function (num, target, i, dp) {
 console.log(`Can partition: ${can_partition_memo([1, 2, 3, 4])}`);
 console.log(`Can partition: ${can_partition_memo([1, 1, 3, 4, 7])}`);
 console.log(`Can partition: ${can_partition_memo([2, 3, 4, 6])}`);
+
+const can_partition_bu = function (num) {
+  // calculate the total sum
+  const totalSum = num.reduce((a, b) => a + b);
+  // make sure its possible to find a partition satisfying the condition
+  if (totalSum % 2 !== 0) return false;
+  // if we can find a partition, intialize a target
+  const target = totalSum / 2;
+
+  // initialize a dp matrix to store results of subproblems
+  // (cols are indexes and rows are sums to target)
+  const dp = new Array(num.length)
+    .fill(false)
+    .map(() => new Array(target + 1).fill(false));
+
+  // we can always generate a subset that adds to 0 from the first i numbers by not taking any
+  dp.forEach((row) => (row[0] = true));
+
+  // we can generate a subset that adds to the first element in sum that adds to that amount
+  for (let s = 0; s < dp[0].length; s++) {
+    if (num[0] === s) dp[0][s] = true;
+  }
+
+  // process all the other subproblems
+  for (let i = 1; i < dp.length; i++) {
+    for (let s = 1; s < dp[0].length; s++) {
+      // if we can get the sum without the number at index i, leave it
+      if (dp[i - 1][s]) {
+        dp[i][s] = dp[i - 1][s];
+      } else {
+        dp[i][s] = dp[i][s - num[i]];
+      }
+    }
+  }
+
+  return dp[num.length - 1][target];
+};
+
+console.log(`Can partition: ${can_partition_bu([1, 2, 3, 4])}`);
+console.log(`Can partition: ${can_partition_bu([1, 1, 3, 4, 7])}`);
+console.log(`Can partition: ${can_partition_bu([2, 3, 4, 6])}`);
