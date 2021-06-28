@@ -1,0 +1,4 @@
+1. brute force recursion (easiest way to see overlapping subproblems --> you are always solving problems repeatedly)
+2. top-down plus memoization (still recursive, but more efficient)
+3. bottom-up (instantiate an array that holds results of subproblems)
+4. bottom-up, optimized (instantiate array that holds results of subproblems, which is overwritten)

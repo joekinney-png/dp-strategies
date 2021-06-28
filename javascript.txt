@@ -1,0 +1,17 @@
+tools
+ - recursive inner function
+ - .length
+ - if conditional
+ - || operator
+ - Math.max()
+ - console.log
+ - typeof
+ - new Array().fill()
+ - map
+ - % operator
+ - lists (arrays)
+ - strings
+ - numbers
+ - hashtables (objects)
+ - for loops (nested)
+ - 
