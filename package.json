@@ -1,0 +1,20 @@
+{
+  "name": "dp-strategies",
+  "version": "1.0.0",
+  "description": "various dp strategies and accompanying data structure summary",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joekinney-png/dp-strategies.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joekinney-png/dp-strategies/issues"
+  },
+  "homepage": "https://github.com/joekinney-png/dp-strategies#readme"
+}
