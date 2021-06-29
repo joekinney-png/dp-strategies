@@ -111,5 +111,41 @@ const can_partition_bu = function (num) {
 };
 
 console.log(`Can partition: ${can_partition_bu([1, 2, 3, 4])}`);
-console.log(`Can partition: ${can_partition_bu([1, 1, 3, 4, 7])}`);
+console.log(`Can partition: ${can_partition_bu([1, 1, 3, 4, 7, 3])}`);
 console.log(`Can partition: ${can_partition_bu([2, 3, 4, 6])}`);
+
+const can_partition_bu_op = function (num) {
+  // calculate the total sum
+  const totalSum = num.reduce((a, b) => a + b);
+  // make sure its possible to find a partition satisfying the condition
+  if (totalSum % 2 !== 0) return false;
+  // if we can find a partition, intialize a target
+  const target = totalSum / 2;
+
+  // simply the matrix to a single array that we will repeatedly traverse
+  const dp = new Array(num.length).fill(false);
+
+  // we can always generate a set that sums to zero by not taking any elements
+  dp[0] = true;
+
+  // if we take a single element, then we can generate the sum that corresponds to that number
+  for (let s = 1; s <= target; s++) {
+    if (num[0] === s) dp[s] = true;
+  }
+
+  // process all the other subproblems
+  for (let i = 1; i < dp.length; i++) {
+    for (let s = 1; s <= target; s++) {
+      // if we can get the sum without the number at index i, leave it
+      if (!dp[s]) {
+        dp[s] = dp[s - num[i]];
+      }
+    }
+  }
+
+  return dp[target];
+};
+
+console.log(`Can partition: ${can_partition_bu_op([1, 2, 3, 4])}`);
+console.log(`Can partition: ${can_partition_bu_op([1, 1, 3, 4, 7, 3])}`);
+console.log(`Can partition: ${can_partition_bu_op([2, 3, 4, 6])}`);
